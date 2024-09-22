@@ -1,12 +1,13 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-
 import App from './App'
-
+import { Provider } from 'react-redux'
+import { store } from './app/store'
 import { worker } from './api/server'
 
 import './primitiveui.css'
 import './index.css'
+
 
 // Wrap app rendering so we can wait for the mock API to initialize
 async function start() {
@@ -17,8 +18,10 @@ async function start() {
 
   root.render(
     <React.StrictMode>
-      <App />
-    </React.StrictMode>,
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>
   )
 }
 
